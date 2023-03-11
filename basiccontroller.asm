@@ -17,7 +17,7 @@
 
 playerpos equ $01	; variable for player's position
 playerbuttons equ $02	; variable for player's buttons
-
+checkcollision equ $03 	; variable to store whether collision occurred
 
 nmihandler:
 	pha
@@ -61,11 +61,14 @@ checkleft:
 		lda playerpos
 		adc #255
 		sta playerpos
-
+collisioncheck:
+	; NOT SURE HOW TO GET THIS TO WORK YET, WILL DO NEXT
+	
+	
 storenewpos:
 	lda playerpos
-	sta $0203 	;I think this stores it in x-attrib?
- 	
+	sta $0203 
+
 
 	lda #$02
 	sta $4014
@@ -143,6 +146,8 @@ spriteload:
 	cpx #$20
 	bne spriteload
 
+	lda #$5A
+	sta playerpos
 
 ; Setup background
 
