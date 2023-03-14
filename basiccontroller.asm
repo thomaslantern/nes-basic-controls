@@ -1,4 +1,4 @@
-	; Basic Graphics Program
+	; Basic Controller Program
 	; by Thomas Wesley Scott, 2023
 
 	; Code starts at $C000.
@@ -15,7 +15,7 @@
 	db 0,0,0,0,0,0,0
 
 
-playerpos equ $01	; variable for player's position
+playerpos equ $01		; variable for player's position
 playerbuttons equ $02	; variable for player's buttons
 checkcollision equ $03 	; variable to store whether collision occurred
 
@@ -49,26 +49,39 @@ checkright:
 	moveright:
 		clc
 		lda playerpos
+		cmp #$A9
+		beq noadd
 		adc #1
 		sta playerpos
-	
 checkleft:
 	lda playerbuttons
 	and #%01000000
 	beq storenewpos
 	moveleft:
 		clc
+		lda #$4F
+		cmp playerpos
+		beq noadd
 		lda playerpos
 		adc #255
 		sta playerpos
+
+
+noadd:
+	; YEAH BRAH
 collisioncheck:
 	; NOT SURE HOW TO GET THIS TO WORK YET, WILL DO NEXT
-	
+	lda playerpos
+	cmp #$7A
+	bne storenewpos
+	cmp #$4F
+	bne storenewpos
+	jmp frick
 	
 storenewpos:
 	lda playerpos
 	sta $0203 
-
+frick:
 
 	lda #$02
 	sta $4014
