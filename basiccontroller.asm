@@ -15,15 +15,15 @@
 	db 0,0,0,0,0,0,0
 
 
-playerpos equ $01		; variable for player's position
+playerpos equ $01	; variable for player's position
 playerbuttons equ $02	; variable for player's buttons
-checkcollision equ $03 	; variable to store whether collision occurred
+
 
 nmihandler:
 	pha
 	php
 
-	lda #1
+	lda #1	
 	sta $4016
 	lda #0
 	sta $4016
@@ -176,9 +176,6 @@ spriteload:
 	sta $08		; zero page - storing low byte here
 
 bkgdouter:
-
-
-	
 	
 	ldx #0
 bkgd:
