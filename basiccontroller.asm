@@ -23,65 +23,59 @@ nmihandler:
 	pha
 	php
 
-	lda #1	
-	sta $4016
-	lda #0
-	sta $4016
+	lda #1		; Begin logging controller input
+	sta $4016	; Controller 1
+	lda #0		; Finish logging
+	sta $4016	; Controller 1
 
 	ldx #8
-readloop:
-		pha
-		lda $4016
-		; combine low two bits and store in carry bit
-		and #%00000011
-		cmp #%00000001
-		pla
-		; rotate carry into gamepad variable
-		ror
-		dex
-		bne readloop
-	sta playerbuttons
+readctrlloop:
+	pha		; Put accumulator on stack
+	lda $4016	; Read next bit from controller
+
+	and #%00000011	; If button is active on 1st controller,
+	cmp #%00000001	; this will set the carry
+	pla		; Retrieve current button list from stack
+
+	ror		; Rotate carry onto bit 7, push other
+			; bits one to the right
+
+	dex		
+	bne readctrlloop
+	
+	sta playerbuttons	
 
 checkright:
-	lda playerbuttons
-	and #%10000000
-	beq checkleft
+	lda playerbuttons	; Load buttons
+	and #%10000000		; Bit 7 is "right"
+	beq checkleft		; Skip move if zero/not pressed
 	moveright:
 		clc
-		lda playerpos
-		cmp #$A9
-		beq noadd
-		adc #1
-		sta playerpos
+		lda playerpos	; Load current position
+		cmp #$A9	; Make sure it's not $A9
+		beq noadd	; If it is, don't move!
+		adc #1		; If it's not, add 1 to x-position
+		sta playerpos	; Store in playerpos
 checkleft:
 	lda playerbuttons
-	and #%01000000
-	beq storenewpos
-	moveleft:
+	and #%01000000		; Bit 6 is "left"
+	beq storenewpos		; Skip move if zero/not pressed
+	moveleft:		; (Sim. to code above but for moving left)
 		clc
-		lda #$4F
+		lda #$4F	; Don't move left past $4F (wall)
 		cmp playerpos
 		beq noadd
-		lda playerpos
-		adc #255
-		sta playerpos
+		lda playerpos	; Ok to move
+		adc #255	; Add 255 (= -1) to position
+		sta playerpos	; Store in playerpos
 
 
 noadd:
-	; YEAH BRAH
-collisioncheck:
-	; NOT SURE HOW TO GET THIS TO WORK YET, WILL DO NEXT
-	lda playerpos
-	cmp #$7A
-	bne storenewpos
-	cmp #$4F
-	bne storenewpos
-	jmp frick
+	
 	
 storenewpos:
 	lda playerpos
 	sta $0203 
-frick:
 
 	lda #$02
 	sta $4014
