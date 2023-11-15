@@ -22,6 +22,9 @@ As mentioned in previous tutorials, a lot of NES programmers use a different com
 <h1>How to Run "basiccontroller.nes"</h1>
 Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like to run it! It's a pretty simple program, you can walk back and forth in the little building that I've drawn. It might be a good thought exercise to see why you can't escape the building!
 
+# How to Learn from the Basic Controller Tutorial
+
+(This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
 This readme, coupled with the commenting in the code, should be of help when deciphering the meaning of everything, so you can make modifications and create your own musical masterpieces. Be sure to check out my other tutorials on NES/ASM6502 programming, ideally in the following order:
 1) NES Hello World: https://github.com/thomaslantern/nes-hello-world/
