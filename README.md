@@ -26,6 +26,8 @@ Assuming you've successfully followed the steps to compile above, you should now
 
 # How to Learn from the Basic Controller Tutorial
 
+In a way, this is one of the simplest tutorials of the five, because if you've understood everything from the previous three tutorials (which you should definitely go through if you haven't already!), then this one should be pretty easy. The main changes to our code involve the _nmi handler_.
+
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
 This readme, coupled with the commenting in the code, should be of help when deciphering the meaning of everything, so you can make modifications and create your own musical masterpieces. Be sure to check out my other tutorials on NES/ASM6502 programming, ideally in the following order:
@@ -38,3 +40,4 @@ This readme, coupled with the commenting in the code, should be of help when dec
 As I've mentioned in my other tutorials, it's always a good idea to check out other resources (like https://www.nesdev.org/wiki/APU_basics), to top up your knowledge.
 
 Happy Coding!
+cj
