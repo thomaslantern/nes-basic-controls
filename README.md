@@ -26,7 +26,20 @@ Assuming you've successfully followed the steps to compile above, you should now
 
 # How to Learn from the Basic Controller Tutorial
 
-In a way, this is one of the simplest tutorials of the five, because if you've understood everything from the previous three tutorials (which you should definitely go through if you haven't already!), then this one should be pretty easy. The main changes to our code involve the _nmi handler_.
+In a way, this is one of the simplest tutorials of the five, because if you've understood everything from the previous three tutorials (which you should definitely go through if you haven't already!), then this one should be pretty easy. The main changes to our code involve the _nmi handler_. Let's analyze this code, one chunk at a time.
+
+<pre><code>
+  pha 
+	php
+
+	lda #1		; Begin logging controller input
+	sta $4016	; Controller 1
+	lda #0		; Finish logging
+	sta $4016	; Controller 1
+
+	ldx #8
+</code></pre>
+So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push whatever value is in your accumulator and in your processing flags, respectively. We won't go into too much detail about those, but rest assure that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
@@ -40,4 +53,3 @@ This readme, coupled with the commenting in the code, should be of help when dec
 As I've mentioned in my other tutorials, it's always a good idea to check out other resources (like https://www.nesdev.org/wiki/APU_basics), to top up your knowledge.
 
 Happy Coding!
-cj
