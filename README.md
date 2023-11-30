@@ -41,6 +41,28 @@ In a way, this is one of the simplest tutorials of the five, because if you've u
 </code></pre>
 So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push whatever value is in your accumulator and in your processing flags, respectively. We won't go into too much detail about those, but rest assure that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
 
+Let's take a look at the next section...
+<pre><code>
+	readctrlloop:
+	pha		; Put accumulator on stack
+	lda $4016	; Read next bit from controller
+
+	and #%00000011	; If button is active on 1st controller,
+	cmp #%00000001	; this will set the carry
+	pla		; Retrieve current button list from stack
+
+	ror		; Rotate carry onto bit 7, push other
+			; bits one to the right
+
+	dex		
+	bne readctrlloop
+	
+	sta playerbuttons
+</code></pre>
+
+This section is heavily commented, both for your sake and mine. Basically the NES controllers need to be read one bit at a time, each bit representing one button. We logged what was happening with controller one in our last block of code, and here we're reading it one bit at a time.
+(to be continued!)
+
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
 This readme, coupled with the commenting in the code, should be of help when deciphering the meaning of everything, so you can make modifications and create your own musical masterpieces. Be sure to check out my other tutorials on NES/ASM6502 programming, ideally in the following order:
