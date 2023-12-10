@@ -36,13 +36,13 @@ In a way, this is one of the simplest tutorials of the five, because if you've u
 	sta $4016	; Controller 1
 	lda #0		; Finish logging
 	sta $4016	; Controller 1
-
-	ldx #8
 </code></pre>
 So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push whatever value is in your accumulator and in your processing flags, respectively. We won't go into too much detail about those, but rest assure that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
 
 Let's take a look at the next section...
 <pre><code>
+	ldx #8
+	
 	readctrlloop:
 	pha		; Put accumulator on stack
 	lda $4016	; Read next bit from controller
@@ -60,7 +60,9 @@ Let's take a look at the next section...
 	sta playerbuttons
 </code></pre>
 
-This section is heavily commented, both for your sake and mine. Basically the NES controllers need to be read one bit at a time, each bit representing one button. We logged what was happening with controller one in our last block of code, and here we're reading it one bit at a time.
+This section is heavily commented, both for your sake and mine. Basically the NES controllers need to be read one bit at a time, each bit representing one button. We logged what was happening with controller one in our last block of code, and here we're reading it one bit at a time. The _and_ and _cmp_ command, combined with the loop, basically check one button at a time to see if it is pressed. If it is, the carry is set, and we use _pha_ and _ror_ to put the carry onto our currently button list. In the last block of code, we ended with our accumulator set to 0, so each time we use ror we are throwing up a one in our accumulator if that button is set.
+
+After looping 8 times (through all eight buttons) we now have an accumulator loaded with ones in each slot that has/had that button pressed. We can use that to move on to our next block of code to check if the appropriate button is pressed.
 (to be continued!)
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
