@@ -62,8 +62,25 @@ Let's take a look at the next section...
 
 This section is heavily commented, both for your sake and mine. Basically the NES controllers need to be read one bit at a time, each bit representing one button. We logged what was happening with controller one in our last block of code, and here we're reading it one bit at a time. The _and_ and _cmp_ command, combined with the loop, basically check one button at a time to see if it is pressed. If it is, the carry is set, and we use _pha_ and _ror_ to put the carry onto our currently button list. In the last block of code, we ended with our accumulator set to 0, so each time we use ror we are throwing up a one in our accumulator if that button is set.
 
-After looping 8 times (through all eight buttons) we now have an accumulator loaded with ones in each slot that has/had that button pressed. We can use that to move on to our next block of code to check if the appropriate button is pressed.
-(to be continued!)
+After looping 8 times (through all eight buttons) we now have an accumulator loaded with **1** in each slot that has/had that button pressed. We can use that to move on to our next block of code to check if the appropriate button is being pushed.
+
+<pre><code>
+	checkright:
+	lda playerbuttons	; Load buttons
+	and #%10000000		; Bit 7 is "right"
+	beq checkleft		; Skip move if zero/not pressed
+	moveright:
+		clc
+		lda playerpos	; Load current position
+		cmp #$A9	; Make sure it's not $A9
+		beq noadd	; If it is, don't move!
+		adc #1		; If it's not, add 1 to x-position
+		sta playerpos	; Store in playerpos
+</code></pre>
+
+This section of code is a little easier to understand. Basically we're checking to see if bit 7 of **playerbuttons** (currently loaded in our accumulator) is set to **1**. If it is, the player is pushing right, which will mean that beq checkleft will "fail" (i.e. since our and does not give zero, we don't skip to _checkleft_). 
+(to be continued)
+
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
