@@ -78,9 +78,9 @@ After looping 8 times (through all eight buttons) we now have an accumulator loa
 		sta playerpos	; Store in playerpos
 </code></pre>
 
-This section of code is a little easier to understand. Basically we're checking to see if bit 7 of **playerbuttons** (currently loaded in our accumulator) is set to **1**. If it is, the player is pushing right, which will mean that beq checkleft will "fail" (i.e. since our and does not give zero, we don't skip to _checkleft_). 
-(to be continued)
+This section of code is a little easier to understand. Basically we're checking to see if bit 7 of **playerbuttons** (currently loaded in our accumulator) is set to **1**. If it is, the player is pushing the right button, which will mean that beq checkleft will "fail" (i.e. since our _and_ does not give zero, we don't skip to _checkleft_). Now as for _moveright_, we're loading the player's position (from _playerpos_), checking to make sure it's not already $A9 (that or any higher number is too far to the right of the screen), and then we're adding 1 to playerpos.
 
+_checkleft_ is remarkably similar to _checkright_, so I will leave it as an exercise for the reader to determine what the code does (hint: most of it is commented pretty clearly, anyway).
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
