@@ -80,7 +80,25 @@ After looping 8 times (through all eight buttons) we now have an accumulator loa
 
 This section of code is a little easier to understand. Basically we're checking to see if bit 7 of **playerbuttons** (currently loaded in our accumulator) is set to **1**. If it is, the player is pushing the right button, which will mean that beq checkleft will "fail" (i.e. since our _and_ does not give zero, we don't skip to _checkleft_). Now as for _moveright_, we're loading the player's position (from _playerpos_), checking to make sure it's not already $A9 (that or any higher number is too far to the right of the screen), and then we're adding 1 to playerpos.
 
-_checkleft_ is remarkably similar to _checkright_, so I will leave it as an exercise for the reader to determine what the code does (hint: most of it is commented pretty clearly, anyway).
+_checkleft_ is remarkably similar to _checkright_, so I will leave it as an exercise for the reader to determine what the code does (hint: most of it is commented pretty clearly, anyway). This leaves only to look over one more small section of code:
+<pre><code>
+	noadd:
+	
+	
+storenewpos:
+	lda playerpos
+	sta $0203 
+
+	lda #$02
+	sta $4014
+
+	plp
+	pla
+
+	rti
+</code></pre>
+_noadd_ is there as a label so that, in our previous two sections (_checkleft_ and _checkright_), if we've reached our boundary (i.e. the brick wall), we branch to noadd so that we don't actually change the player's position. Other than that, we move to _storenewpos_, which is where finally load our player's position into $0203, which is the x-coordinate of our first sprite (i.e. our player). We then load #$02 into our accumulator (_lda #$02_) and store it into $4014 (_sta $4014_), which basically takes all of our sprite data and updates it, in case there were any changes to x-coordinates, y-coordinates, etc.
+(_under construction, to be added: how $4014 generally works_)
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
