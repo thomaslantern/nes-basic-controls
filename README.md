@@ -4,7 +4,9 @@
 
 Here's a sample program that teaches you a little about how to program for the NES controller using NES/ASM 6502.
 
-## Note: This is a series of tutorials, which I strongly recommend you go through in order, _especially_ if you are not familiar with ASM6502/NES programming! Each tutorial builds on the last one, so you might miss important information by skipping over any of them. (The code from each tutorial is also largely based on its predecessors.) All of the tutorials from this series can be found here:
+## Note: This is a series of tutorials, which I strongly recommend you go through in order, _especially_ if you are not familiar with ASM6502/NES programming! Each tutorial builds on the last one, so you might miss important information by skipping over any of them. (The code from each tutorial is also largely based on its predecessors.) 
+
+## All of the tutorials from this series can be found here:
 
 1) **NES Hello World**: https://github.com/thomaslantern/nes-hello-world/
 2) **NES Basic Graphics**: https://github.com/thomaslantern/nes-basic-graphics/
