@@ -26,7 +26,7 @@ If you're looking to compile the code, you'll need to use the VASM compiler. You
 As mentioned in previous tutorials, a lot of NES programmers use a different compiler than VASM, ca65 (which is a companion assembler to the cc65 crosscompiler). Their code will look a little different than what you see here. I strongly recommend you stick with VASM as a compiler while learning these tutorials, at least until you better understand the basic code of ASM6502.
 
 <h1>How to Run "basiccontroller.nes"</h1>
-Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like to run it! It's a pretty simple program, you can walk back and forth in the little building that I've drawn. It might be a good thought exercise to see why you can't escape the building!
+Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like to run it! It's a pretty simple program, as all you can do isn walk back and forth in the little building that you're trapped inside. It might be a good thought exercise to look at the code to see why you can't escape the building! (I may spoil the thought exercise later in this tutorial, so be forewarned.)
 
 # How to Learn from the Basic Controller Tutorial
 
