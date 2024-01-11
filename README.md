@@ -15,18 +15,20 @@ Here's a sample program that teaches you a little about how to program for the N
 5) **NES First Game! (Birthday Blast)**: https://github.com/thomaslantern/nes-birthday-blast
 
 ## How to Compile "basiccontroller.asm"
-**_(the instructions here are similar to previous tutorials - if you've got a firm grip on how to compile at this point, you can probably skip this section)_**
+**_(the instructions here are similar to previous tutorials - if you've got a firm grasp on how to compile at this point, you can probably skip this section)_**
 
 If you're looking to compile the code, you'll need to use the VASM compiler. You can get it here: http://www.compilers.de/vasm.html . It's a great compiler that can be used for a variety of systems, and it was made by Dr. Volker Barthelmann. Check it out! 
 
 ### To compile, we simply use: 
-<pre><code>vasm6502_oldstyle.exe DIR/basiccontroller.asm -chklabels -nocase -Fbin -o "DIR2/basiccontroller.nes"</code></pre> where _DIR_ and _DIR2_ are the paths/directories for the source file and target file, respectively. (If you have the win32 version of vasm, you may need to use vasm_oldstyle_win32.exe instead). I have not compiled this in either linux or on a Mac, so there may be differences, but the documentation on VASM should be able to shed some light on any changes that might exist.
+<pre><code>vasm6502_oldstyle.exe DIR/basiccontroller.asm -chklabels -nocase -Fbin -o "DIR2/basiccontroller.nes"</code></pre> where _DIR_ and _DIR2_ are the paths/directories for the source file and target file, respectively. (If you have the win32 version of vasm, you may need to use vasm_oldstyle_win32.exe instead). I have not compiled this in either Linux or on a Mac, so there may be differences, but the documentation on VASM should be able to shed some light on any changes that might exist.
 
-<h1>Differences in Compilers</h1>
-As mentioned in previous tutorials, a lot of NES programmers use a different compiler than VASM, ca65 (which is a companion assembler to the cc65 crosscompiler). Their code will look a little different than what you see here. I strongly recommend you stick with VASM as a compiler while learning these tutorials, at least until you better understand the basic code of ASM6502.
+## Differences in Compilers
+As mentioned in previous tutorials, a lot of NES programmers use a different compiler than VASM, **_ca65_** (which is a companion assembler to the cc65 crosscompiler). Their code will look a little different than what you see here. I strongly recommend you stick with VASM as a compiler while learning these tutorials, at least until you better understand the basic code of ASM6502.
 
-<h1>How to Run "basiccontroller.nes"</h1>
-Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like to run it! It's a pretty simple program, as all you can do is walk back and forth in the little building that you're trapped inside. It might be a good thought exercise to look at the code to see why you can't escape the building! (I may spoil the thought exercise later in this tutorial, so be forewarned.)
+# How to Run "basiccontroller.nes"
+Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like! 
+
+It's a pretty simple program, as all you can do is walk back and forth in the little building that you're trapped inside. It might be a good thought exercise to look at the code to see why you can't escape the building! (I may spoil the thought exercise later in this tutorial, so be forewarned.)
 
 # How to Learn from the Basic Controller Tutorial
 
