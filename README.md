@@ -2,7 +2,7 @@
 
 # Basic Controls for the NES
 
-Here's a sample program that teaches you a little about how to program for the NES controller using NES/ASM 6502.
+Here's a sample program that teaches you a little about how to program for the NES controller using the Assembly 6502 programming language (ASM6502).
 
 ## Note: This is a series of tutorials, which I strongly recommend you go through in order, _especially_ if you are not familiar with ASM6502/NES programming! Each tutorial builds on the last one, so you might miss important information by skipping over any of them. (The code from each tutorial is also largely based on its predecessors.) 
 
@@ -43,7 +43,9 @@ In a way, this is one of the simplest tutorials of the five, because if you've u
 	lda #0		; Finish logging
 	sta $4016	; Controller 1
 </code></pre>
-So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push whatever value is in your accumulator and in your processing flags, respectively. We won't go into too much detail about those, but rest assure that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
+So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push the current value of your accumulator and of your processing flags, respectively, onto the stack. We won't go into too much detail about those, but rest assured that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
+
+The next four lines of code (from _lda #1_ to _sta $4016_) are the set of commands we need to log all of the buttons pushed on controller one, as indicated by the comments.
 
 Let's take a look at the next section...
 <pre><code>
