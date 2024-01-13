@@ -23,7 +23,7 @@ If you're looking to compile the code, you'll need to use the VASM compiler. You
 <pre><code>vasm6502_oldstyle.exe DIR/basiccontroller.asm -chklabels -nocase -Fbin -o "DIR2/basiccontroller.nes"</code></pre> where _DIR_ and _DIR2_ are the paths/directories for the source file and target file, respectively. (If you have the win32 version of vasm, you may need to use vasm_oldstyle_win32.exe instead). I have not compiled this in either Linux or on a Mac, so there may be differences, but the documentation on VASM should be able to shed some light on any changes that might exist.
 
 ## Differences in Compilers
-As mentioned in previous tutorials, a lot of NES programmers use a different compiler than VASM, **_ca65_** (which is a companion assembler to the cc65 crosscompiler). Their code will look a little different than what you see here. I strongly recommend you stick with VASM as a compiler while learning these tutorials, at least until you better understand the basic code of ASM6502.
+As mentioned in previous tutorials, a lot of NES programmers use a different compiler than VASM, **_ca65_** (which is a companion assembler to the cc65 crosscompiler). Their code will look a little different than what you see here. I strongly recommend you stick with VASM as a compiler while learning these tutorials, at least until you better understand the basic code of ASM6502. Once you've got the fundamentals down for ASM6502, you shouldn't have too much trouble reading it when using ca65 (I can read it now with minimal effort).
 
 # How to Run "basiccontroller.nes"
 Assuming you've successfully followed the steps to compile above, you should now have an .nes file, "basiccontroller.nes". This file can be run in any NES (Nintendo Entertainment System) emulator. I tend to use Nestopia, but other NES developers really seem to enjoy FCEUX, so use whichever emulator you like! 
@@ -45,7 +45,7 @@ In a way, this is one of the simplest tutorials of the five, because if you've u
 </code></pre>
 So what do we have here? Well, it's not too complicated. _pha_ and _php_ are just commands to push the current value of your accumulator and of your processing flags, respectively, onto the stack. We won't go into too much detail about those, but rest assured that what we're doing here is just making sure we have a back up of those values in case we need them later. Because our NMI fires about sixty times a second, we can't always guarantee that we'll be able to keep whatever value we're using in our accumulator (if we were busy doing something else), so this helps us make sure that any other code we're in the middle of processing doesn't get disturbed.
 
-The next four lines of code (from _lda #1_ to _sta $4016_) are the set of commands we need to log all of the buttons pushed on controller one, as indicated by the comments.
+The next four lines of code (from _lda #1_ to _sta $4016_) are the set of commands we need to log all of the buttons pushed on controller one, as indicated by the comments. Changing _sta $4016_ to _sta $4017 would log the buttons pressed by controller 2 instead of controller 1.
 
 Let's take a look at the next section...
 <pre><code>
