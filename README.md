@@ -106,7 +106,7 @@ storenewpos:
 	rti
 </code></pre>
 _noadd_ is there as a label so that, in our previous two sections (_checkleft_ and _checkright_), if we've reached our boundary (i.e. the brick wall), we branch to noadd so that we don't actually change the player's position. Other than that, we move to _storenewpos_, which is where finally load our player's position into $0203, which is the x-coordinate of our first sprite (i.e. our player). We then load #$02 into our accumulator (_lda #$02_) and store it into $4014 (_sta $4014_), which basically takes all of our sprite data and updates it, in case there were any changes to x-coordinates, y-coordinates, etc.
-(_under construction, to be added: how $4014 generally works_)
+**(_under construction, to be added: how $4014 generally works_)**
 
 (This tutorial is under construction. While I continue tweaking this "how-to" guide, please visit https://www.nesdev.org/wiki/Controller_reading for your NES dev needs. It's probably the single best source of info for NES programming out there (and the page I linked to in particular has to do with controller input.)
 
